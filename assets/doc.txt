@@ -1,0 +1,1 @@
+npm create vite@latest tailwindcss4 -- -- template react   // codigo para criaçao do tailwindcss4 vite
