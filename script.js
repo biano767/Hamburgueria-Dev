@@ -91,8 +91,7 @@ function updateCartModal() {
                 Remover
             </button>
             
-
-       </div>
+        </div>
     `
 
         total += item.price * item.quantity;
@@ -182,10 +181,12 @@ checkoutBtn.addEventListener("click", function () {
 
     // Enviar pedido para api whats
     const cartItems = cart.map((item) => {
-        return (
-            ` ${item.name} Quantidade: (${item.quantity}) Preço: R$${item.price.toFixed(2)} |`
-        )
-    }).join("")
+        return ` ${item.name} Quantidade: (${item.quantity}) Valor: R$${(item.quantity * item.price).toFixed(2)}`;
+    }).join("\n");
+
+    const totalCart = cart.reduce((total, item) => total + item.quantity * item.price, 0);
+
+    console.log(cartItems + `\nTotal: R$${totalCart.toFixed(2)}`);
 
     const message = encodeURIComponent(cartItems)
     const phone = "+5537999262914"
@@ -202,7 +203,7 @@ checkoutBtn.addEventListener("click", function () {
 function checkRestaurantOpen() {
     const data = new Date();
     const hora = data.getHours();
-    return hora >= 18 && hora < 22;
+    return hora >= 12 && hora < 22;
     // True, Restaurante aberto
 }
 
